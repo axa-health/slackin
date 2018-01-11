@@ -17,7 +17,7 @@ args
   .option(['?', 'help'], 'Show the usage information')
 
 var flags = args.parse(process.argv, {
-  value: '<team-id> <api-token> <google-captcha-secret> <google-captcha-sitekey>',
+  value: '<team-id> <api-token> <google-captcha-secret> <google-captcha-sitekey> <path>',
   help: false
 })
 
@@ -27,6 +27,8 @@ var emails = process.env.EMAIL_SLACK_LIST || ''
 
 var gcaptcha_secret = args.sub[2] || process.env.GOOGLE_CAPTCHA_SECRET
 var gcaptcha_sitekey = args.sub[3] || process.env.GOOGLE_CAPTCHA_SITEKEY
+
+var path = args.sub[4] || process.env.BASE_PATH
 
 
 
@@ -42,6 +44,7 @@ if (!org || !token || !gcaptcha_sitekey || !gcaptcha_secret) {
   flags.emails = emails
   flags.gcaptcha_secret = gcaptcha_secret
   flags.gcaptcha_sitekey = gcaptcha_sitekey
+  flags.path = path
 }
 
 var port = flags.port
